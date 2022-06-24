@@ -12,5 +12,10 @@ pipeline {
                 sh './gradlew clean'
             }
         }
+        stage('build gradlew') {
+            steps {
+                sh './gradlew assembleRelease'
+            }
+        }
     }
 }
