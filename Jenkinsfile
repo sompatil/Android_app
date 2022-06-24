@@ -7,5 +7,10 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Shi191099/Android_app.git']]])
             }
         }
+        stage('gradle clean'){
+            steps {
+                sh './gradlew clean'
+            }
+        }
     }
 }
