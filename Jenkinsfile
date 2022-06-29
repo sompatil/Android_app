@@ -17,9 +17,21 @@ pipeline {
                 sh './gradlew assembleRelease'
             }
         }
-        stage('apk file') {
+         stage('apk file') {
             steps {
                 archiveArtifacts artifacts: '**/*.apk', fingerprint: true, onlyIfSuccessful: true
+            }
+        }
+        stage('Artifacte upload') {
+            steps {
+                echo 'Hello'
+                appCenter apiToken: '34cfa992bf0cf31a60c78c42e7c15a8b00e045f1', 
+                appName: 'Android-Poc', 
+                distributionGroups: 'android-apk-1', 
+                mandatoryUpdate: false, 
+                notifyTesters: true, 
+                ownerName: 'shital191099-gmail.com', 
+                pathToApp: '**/*.apk'
             }
         }
     }
